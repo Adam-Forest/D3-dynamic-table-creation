@@ -2,11 +2,6 @@
 // why is this in the starter, why not just use data?
 var tableData = data;
 
-// check data loaded in console
-// data.forEach(function(ufo) {
-//     console.log(ufo);
-//   });
-
 // assign table body from ufo table to variable
 var ufo_tbody = d3.select("#ufo-table tbody");
 // assign filter by date button to variable
@@ -19,11 +14,20 @@ function clear_ufo_table(){
     ufo_tbody.selectAll("tr").remove();
 }
 
+// function to hide all alert 
+function hide_alerts(){
+    var x = document.getElementsByClassName("infos");
+    var i;
+    for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+    }
+}
+
 // date_button on click action
 date_button.on("click", function() {
 
-    // hide baddate alert
-    document.getElementById("baddate").style.display="none";
+    // hide alerts
+    hide_alerts();
 
     // get filter by info
     var filterbydate = d3.select("#datetime").property("value");
@@ -47,6 +51,11 @@ date_button.on("click", function() {
               ufo_cell.text(value);
             });
           });
+
+          if (!filteredbydate.length) {
+            document.getElementById("nodatefound").style.display="block";
+        }
+
     }
 });
 
