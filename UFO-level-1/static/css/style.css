@@ -46,11 +46,10 @@ body {
 /* This CSS styles the ufo icon in the navbar */
 .nav-ufo {
   position: absolute;
-  bottom: 5px;
-  left: 150px;
+  bottom: 10px;
+  left: 185px;
   width: 35px;
   color: white;
-}
 
 /* Adding styles to the aside and filter form */
 .ufo-form {
@@ -189,6 +188,10 @@ select {
   .hero h1 {
     animation: smaller-title 1.2s forwards linear;
   }
+}
+
+#baddate{
+  display:none;
 }
 
 /* keyframe animations which will be used to animate the title */
