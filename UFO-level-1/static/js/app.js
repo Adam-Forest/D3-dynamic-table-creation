@@ -2,6 +2,11 @@
 // why is this in the starter, why not just use data?
 var tableData = data;
 
+d3.select("#ufo_form").on("submit", function() {
+    d3.event.preventDefault();
+    return false;
+  });
+
 // assign table body from ufo table to variable
 var ufo_tbody = d3.select("#ufo-table tbody");
 // assign filter by date button to variable
