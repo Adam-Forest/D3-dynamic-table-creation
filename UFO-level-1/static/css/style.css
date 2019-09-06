@@ -50,6 +50,11 @@ body {
   left: 185px;
   width: 35px;
   color: white;
+}
+
+#baddate{
+  display:none;
+}
 
 /* Adding styles to the aside and filter form */
 .ufo-form {
@@ -190,9 +195,6 @@ select {
   }
 }
 
-#baddate{
-  display:none;
-}
 
 /* keyframe animations which will be used to animate the title */
 @keyframes title {
