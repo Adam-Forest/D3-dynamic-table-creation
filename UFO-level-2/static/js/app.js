@@ -45,21 +45,31 @@ filter_button.on("click", function() {
     // hide alerts
     hide_alerts();
 
-    // get filter by info
-    var filterbyparams = d3.select("#datetime").property("value");
+    // get filter by info from form variables
+    var filterbyparams=[]
+    filterbyparams["date"] = d3.select("#datetime").property("value");
+    filterbyparams["state"] = d3.select("#stateselect").property("value");
+    // console.log(filterbyparams["date"])
+    // console.log(filterbyparams["state"])
 
     // parse to date object to check if format matches expected
-    var filterbyparams_obj=parseDate(filterbyparams);
+    // can not compare date object to date object, not sure why
+    var filterbyparams_obj=parseDate(filterbyparams["date"]);
     if (!filterbyparams_obj) {
         document.getElementById("baddate").style.display="block";
-        console.log(filterbyparams)
     } else {
         // console.log(filterbyparams_obj);
-        var filteredbyparams = tableData.filter(ufo => ufo.datetime === filterbyparams);
-        console.log(filteredbyparams);
+        var filteredbyparams = tableData.filter(function(ufo) {
+          if ((ufo.datetime === filterbyparams["date"]) && ((ufo.state === filterbyparams["state"].toLowerCase()) || (filterbyparams["state"]=="Any State")))
+            {
+              return ufo;
+            }
+          });
 
+        // console.log(filteredbyparams);
         clear_ufo_table();
 
+        // populate table with filtered data
         filteredbyparams.forEach((ufo) => {
             var ufo_row = ufo_tbody.append("tr");
             Object.entries(ufo).forEach(([key, value]) => {
