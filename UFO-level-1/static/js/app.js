@@ -1,7 +1,7 @@
 // from data.js
-// why is this in the starter, why not just use data?
 var tableData = data;
 
+// prevent form submit on enter
 d3.select("#ufo_form").on("submit", function() {
     d3.event.preventDefault();
     return false;

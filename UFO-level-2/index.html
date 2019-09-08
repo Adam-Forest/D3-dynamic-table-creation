@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>UFO Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
@@ -25,19 +25,55 @@
       <h1>UFO Sightings</h1>
       <p>The Truth is Out There</p>
     </div>
+
+
+    <div id="baddate" class="container infos">
+      <div class="row margin-top-50">
+        <div class="col">
+          <div class="card text-white bg-warning mb-12">
+            <div class="card-header">Alert!</div>
+            <div class="card-body">
+              <h4 class="card-title">Improper Date Format</h4>
+              <p class="card-text">Please enter date as mm/dd/yyyy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="nodatefound" class="container infos">
+        <div class="row margin-top-50">
+          <div class="col">
+            <div class="card text-white bg-info mb-12">
+              <div class="card-header">Info</div>
+              <div class="card-body">
+                <h4 class="card-title">No Results Found</h4>
+                <p class="card-text">Please try a different date.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <div class="container">
       <div class="row margin-top-50">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <aside class="filters">
             <div class="panel panel-default">
               <div class="panel-heading">Filter Search</div>
               <div class="panel-body">
-                <form>
+                <form id="ufo_form">
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
-                        <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                        <label for="datetime">Enter a Date</label>
+                        <input class="form-control" id="datetime" type="text" placeholder="d/m/yyyy">
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="stateselect">Select a State</label>
+                        <select id="stateselect" class="custom-select">
+                          <option selected="">Choose State</option>
+                        </select>
                       </li>
                     </ul>
                   </div>
@@ -47,7 +83,7 @@
             </div>
           </aside>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
           <div id="table-area" class="">
             <table id="ufo-table" class="table table-striped">
               <thead>
@@ -71,6 +107,7 @@
       <span class="bottom">UFO Sightings</span>
     </footer>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <script src="static/js/data.js"></script>
   <script src="static/js/app.js"></script>
