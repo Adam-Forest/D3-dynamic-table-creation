@@ -10,7 +10,7 @@ d3.select("#ufo_form").on("submit", function() {
 // assign table body from ufo table to variable
 var ufo_tbody = d3.select("#ufo-table tbody");
 // assign filter submit button to variable
-var date_button = d3.select("#filter-btn");
+var filter_button = d3.select("#filter-btn");
 
 // append data to state filter
 // map keys to get unique values (eazy peazy)
@@ -39,28 +39,28 @@ function hide_alerts(){
     }
 }
 
-// date_button on click action
-date_button.on("click", function() {
+// filter_button on click action
+filter_button.on("click", function() {
 
     // hide alerts
     hide_alerts();
 
     // get filter by info
-    var filterbydate = d3.select("#datetime").property("value");
+    var filterbyparams = d3.select("#datetime").property("value");
 
     // parse to date object to check if format matches expected
-    var filterbydate_obj=parseDate(filterbydate);
-    if (!filterbydate_obj) {
+    var filterbyparams_obj=parseDate(filterbyparams);
+    if (!filterbyparams_obj) {
         document.getElementById("baddate").style.display="block";
-        console.log(filterbydate)
+        console.log(filterbyparams)
     } else {
-        // console.log(filterbydate_obj);
-        var filteredbydate = tableData.filter(ufo => ufo.datetime === filterbydate);
-        console.log(filteredbydate);
+        // console.log(filterbyparams_obj);
+        var filteredbyparams = tableData.filter(ufo => ufo.datetime === filterbyparams);
+        console.log(filteredbyparams);
 
         clear_ufo_table();
 
-        filteredbydate.forEach((ufo) => {
+        filteredbyparams.forEach((ufo) => {
             var ufo_row = ufo_tbody.append("tr");
             Object.entries(ufo).forEach(([key, value]) => {
               var ufo_cell = ufo_row.append("td");
@@ -68,7 +68,7 @@ date_button.on("click", function() {
             });
           });
 
-          if (!filteredbydate.length) {
+          if (!filteredbyparams.length) {
             document.getElementById("nodatefound").style.display="block";
         }
 
